@@ -8,6 +8,7 @@ def pre_commit(ctx):
     ctx.run("ruff format")
     ctx.run("ruff check --fix")
 
+
 @task
 def clean(ctx):
     ctx.run("rm -rf build dist src.egg-info")
