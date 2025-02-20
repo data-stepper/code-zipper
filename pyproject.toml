@@ -3,6 +3,7 @@ name = "code-zipper"
 version = "0.1.0"
 readme = "README.md"
 license = { text = "MIT" }
+keywords = ["cli", "chatGPT", "productivity"]
 description = "A tool to copy multiple files into the clipboard for efficient use with chat GPT."
 authors = [
     { name = "Bent Mueller", email = "bentmuller.ai@gmail.com" }
@@ -34,6 +35,18 @@ Homepage = "https://github.com/data-stepper/code-zipper"
 [project.scripts]
 code-zipper = "cli:main"
 
+#[build-system]
+#requires = ["setuptools>=75.1.0", "versioningit"]
+#build-backend = "setuptools.build_meta"
+
 [build-system]
-requires = ["setuptools>=61.0"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build]
+targets.wheel = { packages = ["src/cli"] }
+include = [
+  "src/**",
+  "README.md",
+  "LICENSE"
+]
