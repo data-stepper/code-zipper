@@ -50,7 +50,10 @@ def get_files_from_inputs(inputs: List[str]) -> List[Path]:
 console = Console()
 
 
-def main(args: argparse.Namespace) -> None:
+def main() -> None:
+    logging.basicConfig(level=logging.INFO)
+
+    args = parse_args()
     files = get_files_from_inputs(args.inputs)
 
     table = Table(title="Files to Process", show_header=True, header_style="bold cyan")
@@ -78,7 +81,4 @@ def main(args: argparse.Namespace) -> None:
 
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO)
-
-    args = parse_args()
-    main(args)
+    main()
