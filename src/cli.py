@@ -3,10 +3,14 @@ A CLI tool that reads folders of code and copies it to the clipboard.
 """
 
 import argparse
-import pyperclip
 import logging
 from pathlib import Path
 from typing import List
+
+import pyperclip
+from rich.console import Console
+from rich.panel import Panel
+from rich.table import Table
 
 from core.reading import read_contents
 
@@ -43,21 +47,33 @@ def get_files_from_inputs(inputs: List[str]) -> List[Path]:
     return paths
 
 
+console = Console()
+
+
 def main(args: argparse.Namespace) -> None:
     files = get_files_from_inputs(args.inputs)
-    logging.info("Files to process: %s", files)
+
+    table = Table(title="Files to Process", show_header=True, header_style="bold cyan")
+    table.add_column("Filename", style="magenta")
+    for file in files:
+        table.add_row(str(file))
+    console.print(table)
 
     contents = [read_contents(file) for file in files]
     joined = "\n\n".join(contents)
 
     total_chars = len(joined)
-    total_lines = joined.count("\n")
+    total_lines = joined.count("\n") + 1
 
-    logging.info(
-        "Copied {total_lines:,} lines and {total_chars:,} chars to clipboard".format(
-            total_lines=total_lines, total_chars=total_chars
-        )
+    summary = (
+        f"[bold green]Success![/bold green]\n\n"
+        f"Copied [bold yellow]{total_lines:,}[/bold yellow] lines and "
+        f"[bold yellow]{total_chars:,}[/bold yellow] characters to clipboard."
     )
+    console.print(
+        Panel(summary, title="Clipboard Update", title_align="left", style="bold blue")
+    )
+
     pyperclip.copy(joined)
 
 

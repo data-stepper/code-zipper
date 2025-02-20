@@ -6,5 +6,8 @@ readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
     "pyperclip",
-    "ruff"
+    "rich",
+    # Technically Dev Dependencies
+    "ruff",
+    "isort"
 ]
