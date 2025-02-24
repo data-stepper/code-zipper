@@ -24,7 +24,7 @@ pip install code-zipper
 ```
 
 Ensure Python and pip are installed on your system.
-The tool is tested and supported for Python 3.10 and above.
+The tool is tested and supported for Python `3.10` and above.
 
 ---
 
@@ -61,21 +61,44 @@ For copying files from nested folders, use the folder name without a glob patter
 2. **Processing:** Reads each file, concatenating contents while maintaining structure.
 3. **Output:** Copies the combined result to your clipboard, ready for pasting.
 
+Copied clipboard text will look like the following,
+which can be reproduced using
+`code-zipper src/cli.py` after having cloned the repo:
+
+```
+File: src/cli.py (84 lines and 2,015 chars)
+   1 | """
+   2 | A CLI tool that reads folders of code and copies it to the clipboard.
+   3 | """
+   4 | 
+   5 | import argparse
+   6 | import logging
+   < ... more code >
+  82 | 
+  83 | if __name__ == "__main__":
+  84 |     main()
+```
+
+Line numbers, file paths and sizes will help chatGPT better
+navigate your code base and provide more accurate responses.
+
 ---
 
 ## FAQ
 
 ### How do I install code-zipper?
-Install using pip as shown above. Ensure you have a working Python environment.
+Install using pip as shown above.
+Ensure you have a working Python `3.10` (or higher) environment.
 
 ### Are there any file type restrictions?
 code-zipper works best with text-based files.
 Binary files might not display correctly when pasted.
 
-### Where can I report issues or contribute?
-Issues and contributions are welcome! Visit our
-[GitHub repository](https://github.com/data-stepper/code-zipper)
-to submit bug reports, feature requests, or pull requests.
+### Where can I report issues, suggest new features or contribute?
+Issues, feature suggestions or improvements are very welcome!
+For any of those, open a new
+[GitHub issue](https://github.com/data-stepper/code-zipper/issues),
+describe the problem or feature request, and we'll take it from there.
 
 ---
 

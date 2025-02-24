@@ -11,6 +11,6 @@ def pre_commit(ctx):
 
 @task
 def clean(ctx):
-    ctx.run("rm -rf build dist src.egg-info")
+    ctx.run("rm -rf build dist src.egg-info code_zipper-*")
     ctx.run("find . -name '*.pyc' -delete")
     ctx.run("find . -name '__pycache__' -delete")
